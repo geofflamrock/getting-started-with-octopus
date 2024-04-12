@@ -1,0 +1,29 @@
+step "deploy-kubernetes-yaml" {
+    name = "Deploy Kubernetes YAML"
+    properties = {
+        Octopus.Action.TargetRoles = "k8s"
+    }
+
+    action {
+        action_type = "Octopus.KubernetesDeployRawYaml"
+        properties = {
+            Octopus.Action.GitRepository.FilePathFilters = "deployment/manifests/*"
+            Octopus.Action.GitRepository.Source = "Project"
+            Octopus.Action.Kubernetes.DeploymentTimeout = "180"
+            Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
+            Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "deployment/manifests/*"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+
+        packages "getting-started-with-octopus" {
+            acquisition_location = "NotAcquired"
+            feed = "ghcr-io"
+            package_id = "geofflamrock/getting-started-with-octopus"
+            properties = {
+                Extract = "False"
+                Purpose = "DockerImageReference"
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
