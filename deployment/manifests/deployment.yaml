@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: "#{Kubernetes.Namespace}"
+  name: getting-started-with-octopus
+  labels:
+    app: getting-started-with-octopus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: getting-started-with-octopus
+  template:
+    metadata:
+      labels:
+        app: getting-started-with-octopus
+    spec:
+      containers:
+        - name: getting-started-with-octopus
+          image: ghcr.io/geofflamrock/getting-started-with-octopus:#{Octopus.Action.Package[getting-started-with-octopus].PackageVersion}
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: 250m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
