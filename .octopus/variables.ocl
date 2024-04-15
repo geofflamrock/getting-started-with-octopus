@@ -1,0 +1,3 @@
+variable "Kubernetes.Namespace" {
+    value "getting-started-with-octopus-#{Octopus.Environment.Name | ToLower}" {}
+}
