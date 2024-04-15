@@ -12,6 +12,7 @@ step "deploy-kubernetes-yaml" {
             Octopus.Action.Kubernetes.DeploymentTimeout = "180"
             Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
             Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "deployment/manifests/*"
+            Octopus.Action.KubernetesContainers.Namespace = "#{Kubernetes.Namespace}"
             Octopus.Action.Script.ScriptSource = "GitRepository"
         }
 
