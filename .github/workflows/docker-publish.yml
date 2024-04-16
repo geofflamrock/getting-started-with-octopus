@@ -60,8 +60,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=ref,event=branch,prefix=${{ steps.get_version.outputs.version }}-
-            type=ref,event=pr,prefix=${{ steps.get_version.outputs.version }}-
+            type=ref,event=branch,prefix=${{ steps.get_version.outputs.version }}-${{ github.ref_name }}-
+            type=ref,event=pr,prefix=${{ steps.get_version.outputs.version }}-pr-
             type=semver,pattern={{version}}
 
       # Build and push Docker image with Buildx
