@@ -4,7 +4,7 @@ step "deploy-kubernetes-yaml" {
         Octopus.Action.TargetRoles = "k8s"
     }
 
-    action {
+    action "deploy-kubernetes-yaml-boom" {
         action_type = "Octopus.KubernetesDeployRawYaml"
         properties = {
             Octopus.Action.GitRepository.FilePathFilters = "deployment/manifests/*"
