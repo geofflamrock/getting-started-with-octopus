@@ -8,14 +8,22 @@ step "deploy-kubernetes-yaml" {
         action_type = "Octopus.KubernetesDeployRawYaml"
         properties = {
             Octopus.Action.GitRepository.FilePathFilters = "deployment/sopm,etsdksjfnbdskjfh/*"
-            Octopus.Action.GitRepository.Source = "Project"
+            Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.Kubernetes.DeploymentTimeout = "180"
             Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
             Octopus.Action.Kubernetes.ServerSideApply.Enabled = "False"
             Octopus.Action.Kubernetes.ServerSideApply.ForceConflicts = "False"
-            Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "deployment/sopm,etsdksjfnbdskjfh/*"
+            Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "deployment/manifests/*"
             Octopus.Action.KubernetesContainers.Namespace = "#{Kubernetes.Namespace}"
             Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+
+        git_dependencies {
+            default_branch = "geoffl/my-dodgy-branch"
+            file_path_filters = ["deployment/manifests/*"]
+            git_credential_id = "GitCredentials-1"
+            git_credential_type = "Library"
+            repository_uri = "https://github.com/OctopusDeploy/OctopusClients"
         }
 
         packages "getting-started-with-octopus" {
