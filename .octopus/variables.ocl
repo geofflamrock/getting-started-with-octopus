@@ -7,3 +7,9 @@ variable "MyCert" {
 
     value "Certificates-1" {}
 }
+
+variable "MyAccount" {
+    type = "AzureAccount"
+
+    value "team-github-sandbox" {}
+}
