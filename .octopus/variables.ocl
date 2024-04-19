@@ -1,3 +1,9 @@
 variable "Kubernetes.Namespace" {
     value "getting-started-with-octopus-#{Octopus.Environment.Name | ToLower}" {}
 }
+
+variable "MyCert" {
+    type = "Certificate"
+
+    value "Certificates-1" {}
+}
