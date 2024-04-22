@@ -13,7 +13,7 @@ step "deploy-kubernetes-yaml" {
             Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
             Octopus.Action.Kubernetes.ServerSideApply.Enabled = "False"
             Octopus.Action.Kubernetes.ServerSideApply.ForceConflicts = "False"
-            Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "deployment/manifests/*"
+            Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "deployment/i/have/changed/this/*"
             Octopus.Action.KubernetesContainers.Namespace = "#{Kubernetes.Namespace}"
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptSource = "GitRepository"
@@ -21,7 +21,7 @@ step "deploy-kubernetes-yaml" {
 
         git_dependencies {
             default_branch = "main"
-            file_path_filters = ["deployment/test/*"]
+            file_path_filters = ["deployment/i/have/changed/this/*"]
             git_credential_id = "GitCredentials-101"
             git_credential_type = "Library"
             repository_uri = "https://github.com/OctopusDeployTesting/getting-started-with-octopus"
