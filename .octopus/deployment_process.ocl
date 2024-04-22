@@ -13,14 +13,14 @@ step "deploy-kubernetes-yaml" {
             Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
             Octopus.Action.Kubernetes.ServerSideApply.Enabled = "False"
             Octopus.Action.Kubernetes.ServerSideApply.ForceConflicts = "False"
-            Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "k8s-test/*"
+            Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "k8s-test/test/*"
             Octopus.Action.KubernetesContainers.Namespace = "#{Kubernetes.Namespace}"
             Octopus.Action.Script.ScriptSource = "GitRepository"
         }
 
         git_dependencies {
             default_branch = "main"
-            file_path_filters = ["k8s-test/*"]
+            file_path_filters = ["k8s-test/test/*"]
             git_credential_id = "GitCredentials-1"
             git_credential_type = "Library"
             repository_uri = "https://github.com/OctopusDeploy/k8s-samples"
