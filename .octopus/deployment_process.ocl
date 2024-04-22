@@ -24,7 +24,7 @@ step "deploy-kubernetes-yaml" {
             file_path_filters = ["deployment/test/*"]
             git_credential_id = "GitCredentials-101"
             git_credential_type = "Library"
-            repository_uri = "https://github.com/geofflamrock/getting-started-with-octopus"
+            repository_uri = "https://github.com/OctopusDeployTesting/getting-started-with-octopus"
         }
 
         packages "getting-started-with-octopus" {
