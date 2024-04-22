@@ -5,6 +5,6 @@ connectivity_policy {
 versioning_strategy {
     donor_package {
         package = "getting-started-with-octopus"
-        step = "deploy-kubernetes-yaml-boom"
+        step = "Deploy Kubernetes YAML"
     }
 }
