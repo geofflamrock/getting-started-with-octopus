@@ -8,7 +8,7 @@ step "deploy-kubernetes-yaml" {
         action_type = "Octopus.KubernetesDeployRawYaml"
         properties = {
             Octopus.Action.GitRepository.FilePathFilters = "deployment/manifests/*"
-            Octopus.Action.GitRepository.Source = "Project"
+            Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.Kubernetes.DeploymentTimeout = "180"
             Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
             Octopus.Action.Kubernetes.ServerSideApply.Enabled = "False"
@@ -17,6 +17,14 @@ step "deploy-kubernetes-yaml" {
             Octopus.Action.KubernetesContainers.Namespace = "#{Kubernetes.Namespace}"
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+
+        git_dependencies {
+            default_branch = "main"
+            file_path_filters = ["deployment/test/*"]
+            git_credential_id = "GitCredentials-101"
+            git_credential_type = "Library"
+            repository_uri = "https://github.com/geofflamrock/getting-started-with-octopus"
         }
 
         packages "getting-started-with-octopus" {
