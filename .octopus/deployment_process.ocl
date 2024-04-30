@@ -28,7 +28,7 @@ step "deploy-kubernetes-yaml" {
         packages "getting-started-with-octopus" {
             acquisition_location = "NotAcquired"
             feed = "ghcr-io"
-            package_id = "geofflamrock/getting-started-with-octopus"
+            package_id = "#{MyPackage}"
             properties = {
                 Extract = "False"
                 Purpose = "DockerImageReference"
