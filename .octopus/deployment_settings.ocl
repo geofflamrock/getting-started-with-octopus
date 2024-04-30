@@ -3,8 +3,5 @@ connectivity_policy {
 }
 
 versioning_strategy {
-    donor_package {
-        package = "getting-started-with-octopus"
-        step = "Deploy Kubernetes YAML"
-    }
+    template = "#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}"
 }
