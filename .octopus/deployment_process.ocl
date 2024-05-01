@@ -35,5 +35,16 @@ step "deploy-kubernetes-yaml" {
                 SelectionMode = "immediate"
             }
         }
+
+        packages "testtest" {
+            acquisition_location = "NotAcquired"
+            feed = "ghcr-io"
+            package_id = "test"
+            properties = {
+                Extract = "False"
+                Purpose = "DockerImageReference"
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
