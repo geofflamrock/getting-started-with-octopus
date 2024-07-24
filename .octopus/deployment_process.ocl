@@ -1,22 +1,17 @@
-step "deploy-kubernetes-yaml" {
-    name = "Deploy Kubernetes YAML"
-    properties = {
-        Octopus.Action.TargetRoles = "k8s"
-    }
+step "print-container-version" {
+    name = "Print container version"
 
     action {
-        action_type = "Octopus.KubernetesDeployRawYaml"
+        action_type = "Octopus.Script"
         properties = {
-            Octopus.Action.GitRepository.FilePathFilters = "deployment/manifests/*"
-            Octopus.Action.GitRepository.Source = "Project"
-            Octopus.Action.Kubernetes.DeploymentTimeout = "180"
-            Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
-            Octopus.Action.Kubernetes.ServerSideApply.Enabled = "False"
-            Octopus.Action.Kubernetes.ServerSideApply.ForceConflicts = "False"
-            Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "deployment/manifests/*"
-            Octopus.Action.KubernetesContainers.Namespace = "#{Kubernetes.Namespace}"
-            Octopus.Action.Script.ScriptSource = "GitRepository"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                $packageVersion = $OctopusParameters["Octopus.Action.Package[getting-started-with-octopus].Version"]
+                echo "The container version is $packageVersion"
+                EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
         }
+        worker_pool = "hosted-ubuntu"
 
         packages "getting-started-with-octopus" {
             acquisition_location = "NotAcquired"
@@ -24,7 +19,7 @@ step "deploy-kubernetes-yaml" {
             package_id = "geofflamrock/getting-started-with-octopus"
             properties = {
                 Extract = "False"
-                Purpose = "DockerImageReference"
+                Purpose = ""
                 SelectionMode = "immediate"
             }
         }
