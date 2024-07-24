@@ -14,7 +14,7 @@ step "print-container-version" {
         worker_pool = "hosted-ubuntu"
 
         packages "getting-started-with-octopus" {
-            acquisition_location = "ExecutionTarget"
+            acquisition_location = "NotAcquired"
             feed = "ghcr-io"
             package_id = "geofflamrock/getting-started-with-octopus"
             properties = {
