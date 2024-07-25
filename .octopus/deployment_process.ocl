@@ -23,5 +23,16 @@ step "print-container-version" {
                 SelectionMode = "immediate"
             }
         }
+
+        packages "nginx" {
+            acquisition_location = "NotAcquired"
+            feed = "dockerhub"
+            package_id = "nginx"
+            properties = {
+                Extract = "False"
+                Purpose = ""
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
