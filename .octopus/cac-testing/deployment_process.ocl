@@ -6,7 +6,7 @@ step "hello-world-using-powershell" {
         is_required = true
         properties = {
             Octopus.Action.GitRepository.Source = "External"
-            Octopus.Action.Script.ScriptFileName = "test.ps1"
+            Octopus.Action.Script.ScriptFileName = "script.ps1"
             Octopus.Action.Script.ScriptSource = "GitRepository"
         }
         worker_pool = "hosted-windows"
