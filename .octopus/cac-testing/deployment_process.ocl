@@ -13,8 +13,8 @@ step "hello-world-using-powershell" {
 
         git_dependencies {
             default_branch = "main"
-            git_credential_type = "GitHub"
-            github_connection_id = "GitHubAppConnections-1"
+            git_credential_id = "GitCredentials-2"
+            git_credential_type = "Library"
             repository_uri = "https://github.com/dylanlerch/Scripts.git"
         }
     }
